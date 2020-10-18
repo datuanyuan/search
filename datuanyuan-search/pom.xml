@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+    </parent>
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.datuanyuan</groupId>
+    <artifactId>datuanyuan-search</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring.version>4.3.13.RELEASE</spring.version>
+        <spring.data.redis.version>1.8.9.RELEASE</spring.data.redis.version>
+        <spring.session.data.redis.version>1.3.1.RELEASE</spring.session.data.redis.version>
+
+        <servlet.version>3.1.0</servlet.version>
+        <servlet.jstl.version>1.2</servlet.jstl.version>
+        <servlet.jsp.version>2.3.0</servlet.jsp.version>
+        <servlet.el.version>3.0.0</servlet.el.version>
+
+        <commons.lang3.version>3.7</commons.lang3.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.codec.version>1.9</commons.codec.version>
+        <commons.beanutils.version>1.8.3</commons.beanutils.version>
+        <commons.fileupload.version>1.3.1</commons.fileupload.version>
+        <commons.compress.version>1.9</commons.compress.version>
+        <commons.io.version>2.6</commons.io.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <commons.pool2.version>2.4.2</commons.pool2.version>
+
+        <mysql.version>5.1.46</mysql.version>
+        <redis.version>2.9.0</redis.version>
+        <tomcat-jdbc.version>9.0.2</tomcat-jdbc.version>
+
+        <junit.version>4.12</junit.version>
+        <quartz.version>2.2.3</quartz.version>
+        <fastjson.version>1.2.48</fastjson.version>
+        <druid.version>1.1.9</druid.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <jaxen.version>1.1.6</jaxen.version>
+        <log4j.version>1.2.17</log4j.version>
+        <esapi.version>2.1.0.1</esapi.version>
+        <velocity.version>2.0</velocity.version>
+        <velocity.dep.version>1.4</velocity.dep.version>
+        <fst.version>2.57</fst.version>
+
+        <org.slf4j.version>1.7.9</org.slf4j.version>
+        <slf4j-log4j12.version>1.7.9</slf4j-log4j12.version>
+
+        <jackson.version>2.7.5</jackson.version>
+        <ackson-asl.version>1.9.4</ackson-asl.version>
+        <poi.version>3.15</poi.version>
+
+        <xsf.version>1.1.4</xsf.version>
+        <dsf.version>1.0.0</dsf.version>
+        <dsfa.version>1.0.0</dsfa.version>
+        <cloudjdbc.version>11.0.0</cloudjdbc.version>
+        <kingbasejdbc4.version>1.0.0</kingbasejdbc4.version>
+        <kingbasejdbc8.version>8.2.0</kingbasejdbc8.version>
+        <hgdb.version>5.0.42</hgdb.version>
+        <groovy.version>1.6.7</groovy.version>
+        <ojdbc6.version>6</ojdbc6.version>
+        <dmjdbc.version>7.17.0</dmjdbc.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <ueditor.version>1.1.3</ueditor.version>
+
+        <sag.version>3.2</sag.version>
+
+
+        <http-agent.version>1.1.17.628</http-agent.version>
+        <agent-wrapper.version>1.2.17.1103</agent-wrapper.version>
+        <packet-wrapper.version>1.6.18.0105</packet-wrapper.version>
+
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--搜索引擎ES相关依赖包 -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>6.7.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+        <!--搜索引擎ES相关依赖包 -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${ackson-asl.version}</version>
+        </dependency>
+
+        <!-- apache相关jar 开始 -->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons.fileupload.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${commons.compress.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons.pool2.version}</version>
+        </dependency>
+        <!-- apache相关jar 结束 -->
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat-jdbc.version}</version>
+        </dependency>
+
+        <!-- Servlet Dependencies Begin -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${servlet.jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${servlet.el.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${servlet.jstl.version}</version>
+        </dependency>
+        <!-- Servlet Dependencies End -->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>ej-technologies</id>
+            <url>https://maven.ej-technologies.com/repository/</url>
+        </repository>
+        <repository>
+            <id>com.teamdev</id>
+            <url>http://maven.teamdev.com/repository/products</url>
+        </repository>
+
+        <repository>
+            <id>aliyunmaven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+</project>
